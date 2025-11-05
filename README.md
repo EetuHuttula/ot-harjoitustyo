@@ -1,5 +1,5 @@
 # Ohjelmistotekniikka, harjoitustyö
 
 Aion tehdä jonkinlaisen **shoppinglist-sovelluksen**, jolla pääsen eroon *tarralapuista ja 80-luvun käsinkirjoittamisesta*.
-[Laskarit](https://github.com/EetuHuttula/ot-harjoitustyo/tree/main/laskarit)
+[Laskarit](https://github.com/EetuHuttula/ot-harjoitustyo/tree/main/laskarit) [Tuntikirjanpito](https://github.com/EetuHuttula/ot-harjoitustyo/blob/main/shoppingList/dokumentaatio/tuntikirjanpito.md)
 
