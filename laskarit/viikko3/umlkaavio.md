@@ -1,7 +1,10 @@
+```mermaid
 ---
 config:
   layout: elk
 ---
+
+
 classDiagram
     Monopolipeli "1" -- "2" Noppa
     Monopolipeli "1" -- "1" Pelilauta
@@ -28,3 +31,4 @@ classDiagram
     Katu -- Nimi
     Katu "1" -- "0..4" Talo
     Katu "1" -- "0..1" Hotelli
+```
