@@ -1,9 +1,10 @@
 from tkinter import ttk, StringVar, constants
 
 class RegisterView:
-    def __init__(self, root, register_handler ):
+    def __init__(self, root, register_handler, login_handler):
         self._root = root
         self._register_handler = register_handler
+        self._login_handler = login_handler
         self._frame = None
         self._username_entry = None
         self._password_entry = None
@@ -54,6 +55,8 @@ class RegisterView:
             self._error(str(e))
         confirm = self._confirm_entry.get() if self._confirm_entry else None
 
+    # AI GENEROITU KOODI ALKAA
+
     def _initialize_username_field(self):
         username_label = ttk.Label(master=self._frame, text="Username")
         self._username_entry = ttk.Entry(master=self._frame)
@@ -71,6 +74,8 @@ class RegisterView:
         self._confirm_entry = ttk.Entry(master=self._frame, show="*")
         confirm_label.grid(row=3, column=0, padx=5, pady=5)
         self._confirm_entry.grid(row=3, column=1, padx=5, pady=5)
+
+    # AI GENEROITU KOODI LOPPUU
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -92,4 +97,11 @@ class RegisterView:
             text="Register",
             command=self._register_handler_wrapper
         )
+
+        login_button = ttk.Button(
+            master=self._frame,
+            text="Go to Login",
+            command=self._login_handler
+        )
         register_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
+        login_button.grid(row=5, column=0, columnspan=2, padx=5, pady=5)

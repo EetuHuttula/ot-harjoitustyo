@@ -17,7 +17,7 @@ class UI:
             except Exception:
                 pass
 
-        self.current_view = RegisterView(self._root, self._register_handler)
+        self.current_view = RegisterView(self._root, self._register_handler, self._login_handler)
         self.current_view.pack()
 
     def _register_handler(self, username, password):
@@ -26,3 +26,9 @@ class UI:
             self.current_view._message_variable.set("Registered successfully")
         except Exception:
             pass
+    def _login_handler(self):
+        if self.current_view:
+            try:
+                self.current_view.destroy()
+            except Exception:
+                pass
