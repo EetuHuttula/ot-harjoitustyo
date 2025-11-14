@@ -1,3 +1,5 @@
+# AI GENEROITU KOODI
+
 import json
 from pathlib import Path
 
@@ -34,11 +36,11 @@ def add_user(username: str, password: str):
 	Raises Exception if username already exists or inputs invalid.
 	"""
 	if not username or not password:
-		raise Exception("Username and password are required")
+		return "Username and password are required"
 
 	records = _load_raw()
 	if any(rec.get("username") == username for rec in records):
-		raise Exception("Username already exists")
+		return "Username already exists"
 
 	record = {
 		"username": username,
@@ -46,6 +48,7 @@ def add_user(username: str, password: str):
 	}
 	records.append(record)
 	_save_raw(records)
+	return "User added successfully"	
 
 
 def get_user_record(username: str):
@@ -71,3 +74,6 @@ def verify_password(username: str, password: str):
 	if not rec:
 		return False
 	return rec.get("password") == password
+
+def delete_all_users():
+	_save_raw([])
