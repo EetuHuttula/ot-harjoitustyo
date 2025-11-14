@@ -38,7 +38,7 @@ class RegisterView:
             self._error("Password must be at least 3 characters long")
             return
         
-        if username.isalpha():
+        if password.isalpha():
             self._error("Password must contain at least one number or special character")
             return
         
