@@ -4,12 +4,14 @@ import json
 from pathlib import Path
 from entities.user import User
 
+# AI generated starts
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 DATA_FILE = DATA_DIR / "users.json"
 
 if not DATA_FILE.exists():
     DATA_FILE.write_text("[]")
+
 
 class UserRepositoryError(Exception):
     """Base exception for user repository errors."""
@@ -21,7 +23,7 @@ class UserAlreadyExistsError(UserRepositoryError):
 
 class InvalidUserDataError(UserRepositoryError):
     """Raised when user data is invalid."""
-
+ # AI generated ends
 
 def _load_raw():
     """Load raw JSON list of user records (dicts)."""

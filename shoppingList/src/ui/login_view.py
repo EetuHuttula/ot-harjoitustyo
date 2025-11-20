@@ -70,8 +70,7 @@ class LoginView:
         self._password_entry = ttk.Entry(master=self._frame, show="*")
         password_label.grid(row=2, column=0, padx=5, pady=5)
         self._password_entry.grid(row=2, column=1, padx=5, pady=5)
-    # Ai generated ends
-
+    
     def _initialize(self):
         """Initialize the register view UI components."""
         self._frame = ttk.Frame(master=self._root)
@@ -103,3 +102,4 @@ class LoginView:
     def _register_handler_wrapper(self):
         """Navigate to registration view."""
         self._register_handler()
+    # Ai generated ends

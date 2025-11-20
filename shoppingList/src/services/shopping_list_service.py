@@ -1,11 +1,11 @@
 """Service layer for shopping list operations."""
+#This is AI generated dummy code. I will do the implementation later.
 
 class ShoppingListService:
     """Handles shopping list logic for a user."""
 
     def __init__(self, user_repository):
         self._user_repository = user_repository
-
 
     def get_shopping_list(self, username):
         """Return the shopping list for the given user."""

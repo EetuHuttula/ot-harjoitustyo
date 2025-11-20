@@ -1,5 +1,6 @@
+"""Authentication service module."""
 from repository.user_repository import add_user, verify_password
-from ui.login_view import LoginView
+
 
 def register_handler(ui, username, password):
     """Handle user registration.
@@ -10,13 +11,13 @@ def register_handler(ui, username, password):
         password: The password for the user
     """
     add_user(username, password)
-    # Instead of accessing protected members, provide a public method or callback in UI for messages
     if hasattr(ui, "show_message"):
         ui.show_message("Registered successfully")
-    # If not, do nothing
+
 
 def login_handler(ui, username=None, password=None, on_success=None):
-    """Handle login logic. If username and password are provided, check credentials. If not, show login view."""
+    """Handle login logic. If username and password are provided,
+     check credentials. If not, show login view."""
     if username is not None and password is not None:
         result = verify_password(username, password)
         if result and on_success:

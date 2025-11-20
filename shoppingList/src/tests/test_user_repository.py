@@ -37,3 +37,21 @@ class TestAddUser(unittest.TestCase):
             user_repository.add_user("", "")
         self.assertIn("Username and password are required",
                       str(context.exception))
+        
+    def test_verify_password_success(self):
+        """Test successful password verification."""
+        user_repository.add_user(self.username, self.password)
+        result = user_repository.verify_password(self.username, self.password)
+        self.assertTrue(result)
+
+    def test_verify_password_failure(self):
+        """Test failed password verification."""
+        user_repository.add_user(self.username, self.password)
+        result = user_repository.verify_password(self.username, "wrongpass")
+        self.assertFalse(result)
+
+    def test_verify_password_nonexistent_user(self):
+        """Test password verification for nonexistent user."""
+        result = user_repository.verify_password("nonexistent", "somepass")
+        self.assertFalse(result)
+    

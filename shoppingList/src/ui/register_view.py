@@ -76,7 +76,7 @@ class RegisterView:
             self._login_handler()
         except Exception as e:
             self._error(str(e))
-            
+
     # AI generated starts
     def _initialize_username_field(self):
         """Initialize username input field."""
@@ -99,6 +99,7 @@ class RegisterView:
         confirm_label.grid(row=3, column=0, padx=5, pady=5)
         self._confirm_entry.grid(row=3, column=1, padx=5, pady=5)
     # Ai generated ends
+
     def _initialize(self):
         """Initialize the register view UI components."""
         self._frame = ttk.Frame(master=self._root)
