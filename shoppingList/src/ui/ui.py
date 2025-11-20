@@ -3,7 +3,7 @@
 from ui.register_view import RegisterView
 from ui.login_view import LoginView
 from repository.user_repository import add_user
-from services.auth_service import _login_handler, _register_handler
+from services.auth_service import login_handler, register_handler
 
 class UI:
     def _main_view(self, username=None):
@@ -43,10 +43,11 @@ class UI:
             except Exception:
                 pass
 
+        from services.auth_service import register_handler, login_handler
         self.current_view = LoginView(
             self._root,
             self._register_view,
-            lambda u, p: self._login_handler(u, p, self._main_view)
+            lambda username, password: login_handler(self, username, password, self._main_view)
         )
         self.current_view.pack()
 
@@ -58,10 +59,11 @@ class UI:
             except Exception:
                 pass
 
+        from services.auth_service import register_handler, login_handler
         self.current_view = RegisterView(
             self._root,
-            self._register_handler,
-            self._login_handler
+            lambda username, password: register_handler(self, username, password),
+            self._login_view
         )
         self.current_view.pack()
 

@@ -12,7 +12,7 @@ class RegisterView:
         Args:
             root: Parent Tk widget
             register_handler: Callback for registration
-            login_handler: Callback to switch to login view
+            login_handler: Callback to navigate to login view
         """
         self._root = root
         self._register_handler = register_handler
@@ -52,10 +52,12 @@ class RegisterView:
             self._error("Username and password is required")
             return
 
-        if len(password) < 3:
+        if len(username) < 3:
             self._error("Password must be at least 3 characters long")
             return
-
+        if len(password) < 8:
+            self._error("Password must be at least 8 characters long")
+            return
         if password.isalpha():
             self._error(
                 "Password must contain at least one number or special character")
@@ -70,6 +72,8 @@ class RegisterView:
             return
         try:
             self._register_handler(username, password)
+            # On success, navigate to login view
+            self._login_handler()
         except Exception as e:
             self._error(str(e))
             
@@ -120,7 +124,11 @@ class RegisterView:
         login_button = ttk.Button(
             master=self._frame,
             text="Go to Login",
-            command=self._login_handler
+            command=self._login_handler_wrapper
         )
         register_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
         login_button.grid(row=5, column=0, columnspan=2, padx=5, pady=5)
+
+    def _login_handler_wrapper(self):
+        """Navigate to login view."""
+        self._login_handler()

@@ -11,8 +11,8 @@ class LoginView:
 
         Args:
             root: Parent Tk widget
-            register_handler: Callback for registration
-            login_handler: Callback to switch to login view
+            register_handler: Callback to navigate to registration view
+            login_handler: Callback for login logic
         """
         self._root = root
         self._register_handler = register_handler
@@ -55,7 +55,7 @@ class LoginView:
                 self._error("Invalid username or password")
         except Exception as e:
             self._error(str(e))
-            
+
     # AI generated starts
     def _initialize_username_field(self):
         """Initialize username input field."""
@@ -95,7 +95,11 @@ class LoginView:
         register_button = ttk.Button(
             master=self._frame,
             text="Don't have an account? Register",
-            command=self._register_handler
+            command=self._register_handler_wrapper
         )
         login_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
         register_button.grid(row=5, column=0, columnspan=2, padx=5, pady=5)
+
+    def _register_handler_wrapper(self):
+        """Navigate to registration view."""
+        self._register_handler()

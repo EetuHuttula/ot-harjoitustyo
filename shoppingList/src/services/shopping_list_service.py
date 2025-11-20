@@ -17,12 +17,9 @@ class ShoppingListService:
 
     def add_item(self, username, item_name, quantity):
         """Add an item to the user's shopping list."""
-        pass
 
     def remove_item(self, username, item_name):
         """Remove an item from the user's shopping list."""
-        pass
 
     def clear_list(self, username):
         """Clear the user's shopping list."""
-        pass
