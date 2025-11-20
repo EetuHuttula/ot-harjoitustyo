@@ -3,7 +3,7 @@
 from tkinter import ttk, StringVar, constants
 
 
-class RegisterView:
+class LoginView:
     """UI component for user registration."""
 
     def __init__(self, root, register_handler, login_handler):
@@ -40,36 +40,19 @@ class RegisterView:
         """
         self._message_variable.set(message)
 
-    def _register_handler_wrapper(self):
-        """Handle registration form submission."""
+    def _login_handler_wrapper(self):
+        """Handle login form submission."""
         username = self._username_entry.get()
         password = self._password_entry.get()
-        confirm = None
-        if self._confirm_entry:
-            confirm = self._confirm_entry.get()
 
         if len(username) == 0 or len(password) == 0:
-            self._error("Username and password is required")
+            self._error("Username and password are required")
             return
 
-        if len(password) < 3:
-            self._error("Password must be at least 3 characters long")
-            return
-
-        if password.isalpha():
-            self._error(
-                "Password must contain at least one number or special character")
-            return
-
-        if confirm is None or len(confirm) == 0:
-            self._error("Please confirm your password")
-            return
-
-        if password != confirm:
-            self._error("Passwords do not match")
-            return
         try:
-            self._register_handler(username, password)
+            result = self._login_handler(username, password)
+            if not result:
+                self._error("Invalid username or password")
         except Exception as e:
             self._error(str(e))
             
@@ -87,14 +70,8 @@ class RegisterView:
         self._password_entry = ttk.Entry(master=self._frame, show="*")
         password_label.grid(row=2, column=0, padx=5, pady=5)
         self._password_entry.grid(row=2, column=1, padx=5, pady=5)
-
-    def _initialize_password_field_confirmation(self):
-        """Initialize password confirmation input field."""
-        confirm_label = ttk.Label(master=self._frame, text="Confirm password")
-        self._confirm_entry = ttk.Entry(master=self._frame, show="*")
-        confirm_label.grid(row=3, column=0, padx=5, pady=5)
-        self._confirm_entry.grid(row=3, column=1, padx=5, pady=5)
     # Ai generated ends
+
     def _initialize(self):
         """Initialize the register view UI components."""
         self._frame = ttk.Frame(master=self._root)
@@ -109,18 +86,16 @@ class RegisterView:
 
         self._initialize_username_field()
         self._initialize_password_field()
-        self._initialize_password_field_confirmation()
-
-        register_button = ttk.Button(
-            master=self._frame,
-            text="Register",
-            command=self._register_handler_wrapper
-        )
 
         login_button = ttk.Button(
             master=self._frame,
-            text="Go to Login",
-            command=self._login_handler
+            text="Login",
+            command=self._login_handler_wrapper
         )
-        register_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
-        login_button.grid(row=5, column=0, columnspan=2, padx=5, pady=5)
+        register_button = ttk.Button(
+            master=self._frame,
+            text="Don't have an account? Register",
+            command=self._register_handler
+        )
+        login_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
+        register_button.grid(row=5, column=0, columnspan=2, padx=5, pady=5)

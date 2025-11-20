@@ -1,5 +1,3 @@
-
-
 """Test module for user repository."""
 
 import unittest
