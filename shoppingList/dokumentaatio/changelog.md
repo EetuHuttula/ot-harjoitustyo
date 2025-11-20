@@ -9,3 +9,10 @@
     - Testattu käyttäjän lisäystä sekä 2 erorria, käyttäjä nimi onjo olemassa ja käyttäjänimi ja salasana puuttuu.
     - Lisätty coverage raportit 
     - Lisätty invoke komennot
+
+## Viikko 4
+    - Käytttäjä voi kirjautua sovellukseen
+    - Kirjautusmis formi tehty
+    - lisätty services kansio jossa dummy shopping listan tekemiseen ja toinen file jossa on logiikkaa rekisteröitymiseen ja kirjautumiseen
+    - Testejä autentikoimiseen
+    - arkkitehtuuri.md tehty
