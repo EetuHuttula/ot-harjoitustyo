@@ -58,6 +58,7 @@ Komento kerää testikattavuustiedot ja avaa HTML-raportin selaimessa.
 - [Vaatimusmäärittely](dokumentaatio/vaatimuusmaarittely.md)
 - [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 - [Changelog](dokumentaatio/changelog.md)
+- [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
 
 ## Tekijä
 
