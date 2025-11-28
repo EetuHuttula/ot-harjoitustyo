@@ -1,25 +1,30 @@
 """Service layer for shopping list operations."""
-#This is AI generated dummy code. I will do the implementation later.
+
+from repository import shopping_repository
+
 
 class ShoppingListService:
     """Handles shopping list logic for a user."""
 
-    def __init__(self, user_repository):
-        self._user_repository = user_repository
+    def __init__(self):
+        pass
 
-    def get_shopping_list(self, username):
-        """Return the shopping list for the given user."""
-        user = self._user_repository.get_user_by_username(username)
-        if not user:
+    def get_shopping_list(self, username: str):
+        """Return the shopping list for the given user (list of Shopping)."""
+        if not username:
             return []
+        return shopping_repository.list_items_by_owner(username)
 
-        return []
+    def add_item(self, username: str, item_name: str, quantity: str):
+        """Add an item to the user's shopping list and return the created item."""
+        if not username:
+            raise ValueError("User must be provided")
+        return shopping_repository.add_item(item_name, quantity, username)
 
-    def add_item(self, username, item_name, quantity):
-        """Add an item to the user's shopping list."""
 
-    def remove_item(self, username, item_name):
-        """Remove an item from the user's shopping list."""
-
-    def clear_list(self, username):
-        """Clear the user's shopping list."""
+    def clear_list(self, username: str):
+        """Clear all items for the given user."""
+        items = shopping_repository._load_raw()
+        remaining = [rec for rec in items if rec.get("owner") != username]
+        shopping_repository._save_raw(remaining)
+        return True
