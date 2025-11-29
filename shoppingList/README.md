@@ -45,11 +45,23 @@ poetry run invoke start
 poetry run invoke test
 ```
 
+### Testikattavuus
+
+```bash
+poetry run invoke coverage
+```
+
 ### Testikattavuusraportti
 
 ```bash
 poetry run invoke coverage-report
 ```
+### Pylint
+
+```bash
+poetry run invoke lint
+```
+
 
 Komento kerää testikattavuustiedot ja avaa HTML-raportin selaimessa.
 
