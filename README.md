@@ -71,3 +71,10 @@ Tiedoston _.pylintrc_ määrittelemät tarkistukset voi suorittaa komennolla:
 poetry run invoke lint
 ```
 
+## Dokumentaatio
+
+- [Vaatimusmäärittely](dokumentaatio/vaatimuusmaarittely.md)
+- [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
+- [Changelog](dokumentaatio/changelog.md)
+- [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
+- [Release](https://github.com/EetuHuttula/ot-harjoitustyo/releases/tag/Viikko5)
