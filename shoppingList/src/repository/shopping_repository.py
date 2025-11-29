@@ -34,7 +34,7 @@ def _next_id(records):
     ids = [rec.get("id", 0) for rec in records if isinstance(rec.get("id", 0), int)]
     return max(ids, default=0) + 1
 
-
+# AI GENERATED STARTS
 def add_item(name: str, amount: str, owner: str):
     """Add a shopping item. Returns Shopping instance."""
     if not name:
@@ -88,7 +88,7 @@ def add_item(name: str, amount: str, owner: str):
     records.append(rec)
     _save_raw(records)
     return Shopping.from_dict(rec)
-
+# AI GENERATED ENDS
 
 def list_items_by_owner(owner: str):
     """Return list of Shopping instances belonging to owner."""

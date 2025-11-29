@@ -6,9 +6,6 @@ from repository import shopping_repository
 class ShoppingListService:
     """Handles shopping list logic for a user."""
 
-    def __init__(self):
-        pass
-
     def get_shopping_list(self, username: str):
         """Return the shopping list for the given user (list of Shopping)."""
         if not username:
@@ -28,3 +25,25 @@ class ShoppingListService:
         remaining = [rec for rec in items if rec.get("owner") != username]
         shopping_repository._save_raw(remaining)
         return True
+
+
+# AI GENERATED START
+_service = ShoppingListService()
+
+
+def get_shopping_list(username: str):
+    return _service.get_shopping_list(username)
+
+
+def add_item(username: str, item_name: str, quantity: str):
+    return _service.add_item(username, item_name, quantity)
+
+
+def clear_list(username: str):
+    return _service.clear_list(username)
+
+# AI GENERATED ENDS
+
+
+
+
