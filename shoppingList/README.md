@@ -71,7 +71,7 @@ Komento kerää testikattavuustiedot ja avaa HTML-raportin selaimessa.
 - [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 - [Changelog](dokumentaatio/changelog.md)
 - [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
-
+- [Release](https://github.com/EetuHuttula/ot-harjoitustyo/releases/tag/Viikko5)
 ## Tekijä
 
 Eetu Huttula
