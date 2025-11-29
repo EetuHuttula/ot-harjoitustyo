@@ -1,7 +1,7 @@
 """Shopping repository for persisting shopping items to JSON."""
-import json
 from pathlib import Path
 from entities.shopping import Shopping
+from repository.json_utils import load_raw, save_raw
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -12,83 +12,71 @@ if not DATA_FILE.exists():
 
 
 def _load_raw():
-    try:
-        with DATA_FILE.open("r", encoding="utf-8") as f:
-            data = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError, OSError):
-        data = []
-
-    if not isinstance(data, list):
-        data = []
-    return data
+    """Load raw JSON list of shopping records."""
+    return load_raw(DATA_FILE)
 
 
 def _save_raw(records):
-    with DATA_FILE.open("w", encoding="utf-8") as f:
-        json.dump(records, f, ensure_ascii=False, indent=2)
+    """Save shopping records to JSON file."""
+    save_raw(DATA_FILE, records)
 
 
 def _next_id(records):
+    """Calculate the next available ID for a shopping item."""
     if not records:
         return 1
-    ids = [rec.get("id", 0) for rec in records if isinstance(rec.get("id", 0), int)]
+    ids = [rec.get("id", 0) for rec in records
+           if isinstance(rec.get("id", 0), int)]
     return max(ids, default=0) + 1
 
-# AI GENERATED STARTS
+
+def _parse_numeric_value(value):
+    """Parse a string value to int or float, or return None."""
+    try:
+        return int(value)
+    except (ValueError, TypeError):
+        pass
+    try:
+        return float(value)
+    except (ValueError, TypeError):
+        pass
+    return None
+
+
+def _update_existing_item(rec, amount):
+    """Update an existing item's amount by aggregating if possible."""
+    existing = rec.get("amount")
+    existing_num = _parse_numeric_value(existing)
+    new_num = _parse_numeric_value(amount)
+
+    if existing_num is not None and new_num is not None:
+        summed = existing_num + new_num
+        if int(summed) == summed:
+            rec["amount"] = int(summed)
+        else:
+            rec["amount"] = summed
+    else:
+        rec["amount"] = amount
+
+#Ai GENERATED START
 def add_item(name: str, amount: str, owner: str):
     """Add a shopping item. Returns Shopping instance."""
     if not name:
         raise ValueError("Item name is required")
     records = _load_raw()
-    # If an item with the same name and owner exists, try to aggregate amounts
+
     for rec in records:
         if rec.get("owner") == owner and rec.get("name") == name:
-            # try to parse numeric amounts and add them
-            try:
-                existing = rec.get("amount")
-                # attempt integer addition first
-                existing_num = None
-                new_num = None
-                try:
-                    existing_num = int(existing)
-                except Exception:
-                    try:
-                        existing_num = float(existing)
-                    except Exception:
-                        existing_num = None
-                try:
-                    new_num = int(amount)
-                except Exception:
-                    try:
-                        new_num = float(amount)
-                    except Exception:
-                        new_num = None
-
-                if existing_num is not None and new_num is not None:
-                    summed = existing_num + new_num
-                    # use int when possible
-                    if int(summed) == summed:
-                        rec["amount"] = int(summed)
-                    else:
-                        rec["amount"] = summed
-                else:
-                    # fallback: overwrite with the provided amount string
-                    rec["amount"] = amount
-
-            except Exception:
-                # if anything goes wrong, just overwrite
-                rec["amount"] = amount
-
+            _update_existing_item(rec, amount)
             _save_raw(records)
             return Shopping.from_dict(rec)
 
-    # otherwise create a new record
     new_id = _next_id(records)
     rec = {"id": new_id, "name": name, "amount": amount, "owner": owner}
     records.append(rec)
     _save_raw(records)
     return Shopping.from_dict(rec)
-# AI GENERATED ENDS
+# Ai GENERATED ENDS
 
 def list_items_by_owner(owner: str):
     """Return list of Shopping instances belonging to owner."""
@@ -100,7 +88,9 @@ def list_items_by_owner(owner: str):
 def remove_item(item_id: int, owner: str):
     """Remove item by id if it belongs to owner. Returns True if removed."""
     records = _load_raw()
-    new_records = [rec for rec in records if not (rec.get("id") == item_id and rec.get("owner") == owner)]
+    new_records = [rec for rec in records
+                   if not (rec.get("id") == item_id
+                           and rec.get("owner") == owner)]
     if len(new_records) == len(records):
         return False
     _save_raw(new_records)
@@ -108,4 +98,15 @@ def remove_item(item_id: int, owner: str):
 
 
 def delete_all_items():
+    """Delete all items from the shopping repository."""
     _save_raw([])
+
+
+def load_all_items():
+    """Load all items from the shopping repository."""
+    return _load_raw()
+
+
+def save_all_items(items):
+    """Save all items to the shopping repository."""
+    _save_raw(items)

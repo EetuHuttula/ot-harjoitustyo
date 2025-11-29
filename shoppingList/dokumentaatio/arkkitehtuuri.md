@@ -71,3 +71,54 @@ Käyttäjät tallennetaan JSON-taulukkoon seuraavassa formaatissa:
     }
 ]
 ```
+
+
+
+
+## Päätoiminnallisuudet 
+ 
+
+    ämä sekvenssikaavio kuvaa prosessia, kun käyttäjä lisää tuotteen ostoslistaan. Sovellus aggregoi määrät automaattisesti, jos tuote on jo listalla.
+
+```mermaid
+sequenceDiagram
+    actor User as Käyttäjä
+    participant UI as ShoppingView
+    participant Service as ShoppingListService
+    participant Repo as shopping_repository
+    participant Storage as shopping.json
+
+    User->>UI: Syötä tuotteen nimi ja määrä,<br/>klikkaa "Add Item"
+    
+    UI->>UI: Validoi: nimi ei tyhjä
+    UI->>Service: add_item(username, nimi, määrä)
+    
+    Service->>Repo: add_item(nimi, määrä, owner)
+    
+    Repo->>Storage: Lue kaikki tuotteet
+    Storage-->>Repo: JSON-lista
+    
+    alt Tuote on jo omistajalla
+        Repo->>Repo: Jäsennä määrät numeroiksi
+        Repo->>Repo: Laske yhteen:<br/>uusi_määrä = vanha + uusi
+        Repo->>Storage: Tallenna päivitetty määrä
+    else Uusi tuote
+        Repo->>Repo: Luo uusi tuote ID:llä
+        Repo->>Storage: Tallenna uusi tuote
+    end
+    
+    Storage-->>Repo: OK
+    Repo-->>Service: Shopping-objekti
+    Service-->>UI: Tuote lisätty
+    
+    UI->>Service: get_shopping_list(username)
+    Service->>Repo: list_items_by_owner(username)
+    Repo->>Storage: Lue tuotteet
+    Storage-->>Repo: Käyttäjän tuotteet
+    Repo-->>Service: Lista
+    Service-->>UI: Päivitetty lista
+    
+    UI->>UI: Tyhjennä input-kentät
+    UI->>UI: Päivitä Treeview näyttö
+    UI-->>User: Näytä päivitetty ostolista
+```

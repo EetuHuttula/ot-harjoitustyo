@@ -1,8 +1,8 @@
 
 """User repository module for handling user data persistence."""
-import json
 from pathlib import Path
 from entities.user import User
+from repository.json_utils import load_raw, save_raw
 
 # AI generated starts
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
@@ -25,23 +25,15 @@ class InvalidUserDataError(UserRepositoryError):
     """Raised when user data is invalid."""
  # AI generated ends
 
+
 def _load_raw():
     """Load raw JSON list of user records (dicts)."""
-    try:
-        with DATA_FILE.open("r", encoding="utf-8") as f:
-            data = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError, OSError):
-        data = []
-
-    if not isinstance(data, list):
-        data = []
-    return data
+    return load_raw(DATA_FILE)
 
 
 def _save_raw(records):
     """Save user records to JSON file."""
-    with DATA_FILE.open("w", encoding="utf-8") as f:
-        json.dump(records, f, ensure_ascii=False, indent=2)
+    save_raw(DATA_FILE, records)
 
 
 def add_user(username: str, password: str):

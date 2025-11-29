@@ -16,3 +16,11 @@
     - lisätty services kansio jossa dummy shopping listan tekemiseen ja toinen file jossa on logiikkaa rekisteröitymiseen ja kirjautumiseen
     - Testejä autentikoimiseen
     - arkkitehtuuri.md tehty
+
+## Viikko 5
+    - Kirjautumisen jälkeen käyttäjä näkee ostoslistansa
+    - käyttäjä voi lisätä tuotteen ja määrän ostoslistalleen
+    - käyttäjä näkee millä nimellä käyttäjä on kirjautunut sisään
+    - testit käyttäjän tuotteen lisäykseen
+    - listan/yksittäisen tavaran poistoon lisätty logiikka muttei vielä tehty ui:hin mitään siihen liittyvää
+    - sekvenssi kaavio arkkitehtuuri.md tiedostoon

@@ -18,12 +18,12 @@ class ShoppingListService:
             raise ValueError("User must be provided")
         return shopping_repository.add_item(item_name, quantity, username)
 
-
     def clear_list(self, username: str):
         """Clear all items for the given user."""
-        items = shopping_repository._load_raw()
-        remaining = [rec for rec in items if rec.get("owner") != username]
-        shopping_repository._save_raw(remaining)
+        items = shopping_repository.load_all_items()
+        remaining = [rec for rec in items
+                     if rec.get("owner") != username]
+        shopping_repository.save_all_items(remaining)
         return True
 
 
@@ -32,18 +32,17 @@ _service = ShoppingListService()
 
 
 def get_shopping_list(username: str):
+    """Get shopping list for a user."""
     return _service.get_shopping_list(username)
 
 
 def add_item(username: str, item_name: str, quantity: str):
+    """Add item to user's shopping list."""
     return _service.add_item(username, item_name, quantity)
 
 
 def clear_list(username: str):
+    """Clear all items for a user."""
     return _service.clear_list(username)
 
 # AI GENERATED ENDS
-
-
-
-

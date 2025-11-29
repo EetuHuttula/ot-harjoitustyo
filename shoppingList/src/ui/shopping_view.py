@@ -1,5 +1,6 @@
 """Shopping view module for showing and editing a user's shopping list."""
-
+ # AI generated styles on this view
+ 
 from tkinter import ttk, StringVar, constants
 from services.shopping_list_service import ShoppingListService
 
@@ -33,7 +34,7 @@ class ShoppingView:
     
         title = ttk.Label(
             master=frame, 
-            text=f"{self._username}!"
+            text=f"{self._username}",
         )
         title.grid(row=0, column=0, columnspan=3, pady=(0, 10), sticky="w")
         label_laber = ttk.Label(master=frame, text="Add Products")
