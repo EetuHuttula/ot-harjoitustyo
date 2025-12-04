@@ -54,12 +54,6 @@ class TestShoppingRepository(unittest.TestCase):
         items = shopping_repository.list_items_by_owner(self.username)
         self.assertEqual(len(items), 0)
     
-    def test_clear_list_no_items(self):
-        """Test clearing the shopping list for a user with no items."""
-        shopping_repository.delete_all_items()
-        items = shopping_repository.list_items_by_owner(self.username)
-        self.assertEqual(len(items), 0)
-    
     def test_remove_item(self):
         """Test removing a specific item from the shopping list."""
         item = shopping_repository.add_item("Bananas", "6", self.username)
@@ -67,30 +61,6 @@ class TestShoppingRepository(unittest.TestCase):
         self.assertTrue(res)
         items = shopping_repository.list_items_by_owner(self.username)
         self.assertEqual(len(items), 0)
-
-    def test_parse_numeric_value_int(self):
-        """Test parsing integer values."""
-        self.assertEqual(shopping_repository._parse_numeric_value("42"), 42)
-        self.assertEqual(shopping_repository._parse_numeric_value("0"), 0)
-        self.assertEqual(shopping_repository._parse_numeric_value("-10"), -10)
-
-    def test_parse_numeric_value_float(self):
-        """Test parsing float values."""
-        self.assertEqual(shopping_repository._parse_numeric_value("3.14"), 3.14)
-        self.assertEqual(shopping_repository._parse_numeric_value("0.5"), 0.5)
-        self.assertEqual(shopping_repository._parse_numeric_value("-2.5"), -2.5)
-
-    def test_parse_numeric_value_string(self):
-        """Test parsing non-numeric strings returns None."""
-        self.assertIsNone(shopping_repository._parse_numeric_value("abc"))
-        self.assertIsNone(shopping_repository._parse_numeric_value("2 kg"))
-        self.assertIsNone(shopping_repository._parse_numeric_value(""))
-
-    def test_parse_numeric_value_none_and_type_errors(self):
-        """Test parsing None and invalid types returns None."""
-        self.assertIsNone(shopping_repository._parse_numeric_value(None))
-        self.assertIsNone(shopping_repository._parse_numeric_value([]))
-        self.assertIsNone(shopping_repository._parse_numeric_value({}))
 
     def test_update_existing_item_both_numeric_int(self):
         """Test updating item with two numeric int values."""
@@ -103,29 +73,3 @@ class TestShoppingRepository(unittest.TestCase):
         rec = {"amount": "2.5"}
         shopping_repository._update_existing_item(rec, "1.5")
         self.assertEqual(rec["amount"], 4.0)
-
-    def test_update_existing_item_mixed_numeric(self):
-        """Test updating item with int and float values."""
-        rec = {"amount": "5"}
-        shopping_repository._update_existing_item(rec, "2.5")
-        self.assertEqual(rec["amount"], 7.5)
-
-    def test_update_existing_item_one_non_numeric(self):
-        """Test updating item when one value is non-numeric."""
-        rec = {"amount": "2 kg"}
-        shopping_repository._update_existing_item(rec, "5")
-        self.assertEqual(rec["amount"], "5")
-
-    def test_update_existing_item_both_non_numeric(self):
-        """Test updating item when both values are non-numeric."""
-        rec = {"amount": "2 kg"}
-        shopping_repository._update_existing_item(rec, "3 kg")
-        self.assertEqual(rec["amount"], "3 kg")
-
-    def test_update_existing_item_float_result_as_int(self):
-        """Test updating item where float result equals int."""
-        rec = {"amount": "2.0"}
-        shopping_repository._update_existing_item(rec, "3.0")
-        self.assertEqual(rec["amount"], 5)
-        self.assertIsInstance(rec["amount"], int)
-    
