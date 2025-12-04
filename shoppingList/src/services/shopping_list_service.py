@@ -18,6 +18,14 @@ class ShoppingListService:
             raise ValueError("User must be provided")
         return shopping_repository.add_item(item_name, quantity, username)
 
+    def remove_item(self, username: str, item_id: int):
+        """Remove a specific item from the user's shopping list."""
+        if not username:
+            raise ValueError("User must be provided")
+        if not shopping_repository.remove_item(item_id, username):
+            raise ValueError("Item not found or does not belong to user")
+        return True
+
     def clear_list(self, username: str):
         """Clear all items for the given user."""
         items = shopping_repository.load_all_items()

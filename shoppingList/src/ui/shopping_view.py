@@ -56,13 +56,31 @@ class ShoppingView:
             command=self._add_item_handler,
             width=12
         )
-        add_button.grid(row=4, column=0, padx=(0, 10), pady=3)
+        add_button.grid(row=4, column=0, padx=(0, 5), pady=3)
 
-        # Shopping list section
+        remove_button = ttk.Button(
+            master=frame, 
+            text="Remove Item", 
+            command=self._remove_item_handler,
+            width=12
+        )
+        remove_button.grid(row=4, column=1, padx=(0, 5), pady=3)
+
+        clear_button = ttk.Button(
+            master=frame, 
+            text="Clear All", 
+            command=self._clear_all_handler,
+            width=12
+        )
+        clear_button.grid(row=4, column=2, padx=(0, 5), pady=3)
+
+        
+        message_label = ttk.Label(master=frame, textvariable=self._message_var, foreground="green")
+        message_label.grid(row=6, column=0, columnspan=3, pady=(0, 10), sticky="w")
+
         list_label = ttk.Label(master=frame, text="Shopping List", font=("Helvetica", 11, "bold"))
-        list_label.grid(row=5, column=0, columnspan=3, sticky="w", pady=(0, 5))
+        list_label.grid(row=6, column=0, columnspan=3, sticky="w", pady=(0, 5))
 
-        # Treeview for shopping list
         self._listbox = ttk.Treeview(
             master=frame, 
             columns=("item", "amount"), 

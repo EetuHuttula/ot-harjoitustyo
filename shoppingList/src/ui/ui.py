@@ -8,16 +8,6 @@ from services.auth_service import login_handler, register_handler
 
 
 class UI:
-    def _main_view(self, username=None):
-        """Display the main shopping list view using ShoppingView."""
-        if self.current_view:
-            try:
-                self.current_view.destroy()
-            except Exception:
-                pass
-
-        self.current_view = ShoppingView(self._root, username, self._login_view)
-        self.current_view.pack()
     """Main UI controller for the shopping list application."""
 
     def __init__(self, root):
@@ -46,7 +36,7 @@ class UI:
             self._root,
             self._register_view,
             lambda username, password: login_handler(
-                self, username, password, self._main_view)
+                self, username, password, self._shopping_view)
         )
         self.current_view.pack()
 
