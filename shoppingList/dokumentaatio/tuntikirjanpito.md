@@ -7,5 +7,6 @@
 | 13.11. | 5    | Testien kirjoitus, tehtävät 2-7 (toimintaa, testit, coverage, invoke, changelog, readme linkki) |  
 | 20.11. | 4    | Testien kirjoitus, Pylint, Pep8, login logiikka ja kirjautumis formi tehty |  
 | 28.11. | 2    | Käyttäjä voi kirjautumisen jälkeen nähdä ja lisätä asioita shoppailulistalleen |
-| 29.11. | 3    | testit ostoslistan näkemiseen ja lisäykseen, lint virheiden korjausta, sekvenssikaavio|
-|  | 19    | |
+| 29.11. | 3    | testit ostoslistan näkemiseen ja lisäykseen, lint virheiden korjausta, sekvenssikaavio |
+| 04.12. | 2    | Ostoslistalta voi poistaa yhden tuotteen tai kaikki nappia painamalla |
+| yht | 21    | |

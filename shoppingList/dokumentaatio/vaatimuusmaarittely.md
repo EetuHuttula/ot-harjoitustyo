@@ -29,10 +29,10 @@ Käyttöliittymässä on kolme erinlaista näkymää, login näkymä, registerat
   - Järjestelmä ilmoittaa virheellisistä kirjautumistiedoista (tehty)
 
 ### Kirjautumisen jälkeen
-* Käyttäjä näkee oman ostoslistansa
-* Käyttäjä voi lisätä uusia tuotteita ostoslistalleen
-  - Tuotteelle voidaan antaa nimi ja määrä (molemmat täytyy antaa)
-* Käyttäjä voi poistaa ne listalta
+* Käyttäjä näkee oman ostoslistansa (tehty)
+* Käyttäjä voi lisätä uusia tuotteita ostoslistalleen (tehty)
+ - Tuotteelle voidaan antaa nimi ja määrä (molemmat täytyy antaa) (tehty)
+* Käyttäjä voi poistaa ne listalta (tehty)
 * Käyttäjä voi kopioida ostoslistan leikepöydälle
   - Lista muotoillaan tekstimuotoon jakamista varten
 * Käyttäjä voi kirjautua ulos järjestelmästä

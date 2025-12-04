@@ -67,10 +67,11 @@ Komento kerää testikattavuustiedot ja avaa HTML-raportin selaimessa.
 
 ## Dokumentaatio
 
+- [Käyttöohje](dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](dokumentaatio/vaatimuusmaarittely.md)
+- [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
 - [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
 - [Changelog](dokumentaatio/changelog.md)
-- [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
 - [Release](https://github.com/EetuHuttula/ot-harjoitustyo/releases/tag/Viikko5)
 ## Tekijä
 

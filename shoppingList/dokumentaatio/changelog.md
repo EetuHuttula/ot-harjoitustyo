@@ -24,3 +24,9 @@
     - testit käyttäjän tuotteen lisäykseen
     - listan/yksittäisen tavaran poistoon lisätty logiikka muttei vielä tehty ui:hin mitään siihen liittyvää
     - sekvenssi kaavio arkkitehtuuri.md tiedostoon
+
+## Viikko 6
+    - Käyttäjä voi poistaa valitun tuotteen
+    - käyttäjä voi poistaa kaikki tuotteet
+    - testit näille toiminnoille
+    - käyttöohje dokumentaatioon
