@@ -47,3 +47,36 @@ class TestRegisterHandler(unittest.TestCase):
         register_handler(None, self.username, self.password)
         result = login_handler(None, self.username, "wrongpass")
         self.assertFalse(result)
+
+    def test_login_without_credentials(self):
+        """Test login_handler without credentials returns None."""
+        result = login_handler(None)
+        self.assertIsNone(result)
+
+    def test_login_with_credentials_and_callback(self):
+        """Test login_handler calls on_success callback with username."""
+        register_handler(None, self.username, self.password)
+
+        callback_username = None
+
+        def on_success(username):
+            nonlocal callback_username
+            callback_username = username
+
+        result = login_handler(None, self.username, self.password, on_success)
+        self.assertTrue(result)
+        self.assertEqual(callback_username, self.username)
+
+    def test_login_invalid_credentials_with_callback(self):
+        """Test login_handler with invalid credentials doesn't call callback."""
+        register_handler(None, self.username, self.password)
+
+        callback_called = False
+
+        def on_success(username):
+            nonlocal callback_called
+            callback_called = True
+
+        result = login_handler(None, self.username, "wrongpass", on_success)
+        self.assertFalse(result)
+        self.assertFalse(callback_called)
