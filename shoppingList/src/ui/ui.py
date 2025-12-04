@@ -23,13 +23,17 @@ class UI:
         """Start the UI with the login view."""
         self._login_view()
 
-    def _login_view(self):
-        """Display the login view."""
+    def _destroy_current_view(self):
+        """Destroy the current view safely."""
         if self.current_view:
             try:
                 self.current_view.destroy()
             except Exception:
                 pass
+
+    def _login_view(self):
+        """Display the login view."""
+        self._destroy_current_view()
 
         from services.auth_service import login_handler
         self.current_view = LoginView(
@@ -42,11 +46,7 @@ class UI:
 
     def _shopping_view(self, username):
         """Display the shopping list view for the given username."""
-        if self.current_view:
-            try:
-                self.current_view.destroy()
-            except Exception:
-                pass
+        self._destroy_current_view()
 
         self.current_view = ShoppingView(
             self._root,
@@ -57,11 +57,7 @@ class UI:
 
     def _register_view(self):
         """Display the registration view."""
-        if self.current_view:
-            try:
-                self.current_view.destroy()
-            except Exception:
-                pass
+        self._destroy_current_view()
 
         from services.auth_service import register_handler
         self.current_view = RegisterView(
