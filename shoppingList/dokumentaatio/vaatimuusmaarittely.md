@@ -33,9 +33,9 @@ Käyttöliittymässä on kolme erinlaista näkymää, login näkymä, registerat
 * Käyttäjä voi lisätä uusia tuotteita ostoslistalleen (tehty)
  - Tuotteelle voidaan antaa nimi ja määrä (molemmat täytyy antaa) (tehty)
 * Käyttäjä voi poistaa ne listalta (tehty)
-* Käyttäjä voi kopioida ostoslistan leikepöydälle
+* Käyttäjä voi kopioida ostoslistan leikepöydälle (tehty)
   - Lista muotoillaan tekstimuotoon jakamista varten
-* Käyttäjä voi kirjautua ulos järjestelmästä
+* Käyttäjä voi kirjautua ulos järjestelmästä (tehty)
 
 ## Jatkokehitysideoita
 - Tuotekategoriat ostoslistan järjestämiseksi
