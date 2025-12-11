@@ -30,3 +30,9 @@
     - käyttäjä voi poistaa kaikki tuotteet
     - testit näille toiminnoille
     - käyttöohje dokumentaatioon
+
+## Viikko 7
+    - uloskirjautuminen
+    - copy to clipboard
+    - testi dokumentti
+    - vaatimusmaarittelu dokumentti 

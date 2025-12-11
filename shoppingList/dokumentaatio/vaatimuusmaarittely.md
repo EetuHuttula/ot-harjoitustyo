@@ -20,22 +20,22 @@ Käyttöliittymässä on kolme erinlaista näkymää, login näkymä, registerat
 ## Toiminnalisuus
 
 ### Ennen kirjautumista
-* Käyttäjä voi luoda uuden käyttäjätilin (tehty)
-  - Käyttäjätunnuksen tulee olla uniikki ja vähintään 3 merkkiä pitkä (tehty)
-  - Salasanan tulee olla vähintään 8 merkkiä pitkä ja sisältää 1 erikoismerkin (tehty)
-  - Jos rekisteröinti onnistuu, käyttäjä menee login näkymään (tehty)
-* Käyttäjä voi kirjautua sisään järjestelmään (tehty)
-  - Kirjautuminen onnistuu oikeilla tunnuksilla (tehty)
-  - Järjestelmä ilmoittaa virheellisistä kirjautumistiedoista (tehty)
+* Käyttäjä voi luoda uuden käyttäjätilin
+  - Käyttäjätunnuksen tulee olla uniikki ja vähintään 3 merkkiä pitkä
+  - Salasanan tulee olla vähintään 8 merkkiä pitkä ja sisältää 1 erikoismerkin
+  - Jos rekisteröinti onnistuu, käyttäjä menee login näkymään
+* Käyttäjä voi kirjautua sisään järjestelmään
+  - Kirjautuminen onnistuu oikeilla tunnuksilla
+  - Järjestelmä ilmoittaa virheellisistä kirjautumistiedoista
 
 ### Kirjautumisen jälkeen
-* Käyttäjä näkee oman ostoslistansa (tehty)
-* Käyttäjä voi lisätä uusia tuotteita ostoslistalleen (tehty)
- - Tuotteelle voidaan antaa nimi ja määrä (molemmat täytyy antaa) (tehty)
-* Käyttäjä voi poistaa ne listalta (tehty)
-* Käyttäjä voi kopioida ostoslistan leikepöydälle (tehty)
+* Käyttäjä näkee oman ostoslistansa
+* Käyttäjä voi lisätä uusia tuotteita ostoslistalleen
+ - Tuotteelle voidaan antaa nimi ja määrä (molemmat täytyy antaa)
+* Käyttäjä voi poistaa ne listalta
+* Käyttäjä voi kopioida ostoslistan leikepöydälle
   - Lista muotoillaan tekstimuotoon jakamista varten
-* Käyttäjä voi kirjautua ulos järjestelmästä (tehty)
+* Käyttäjä voi kirjautua ulos järjestelmästä
 
 ## Jatkokehitysideoita
 - Tuotekategoriat ostoslistan järjestämiseksi
