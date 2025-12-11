@@ -9,4 +9,5 @@
 | 28.11. | 2    | Käyttäjä voi kirjautumisen jälkeen nähdä ja lisätä asioita shoppailulistalleen |
 | 29.11. | 3    | testit ostoslistan näkemiseen ja lisäykseen, lint virheiden korjausta, sekvenssikaavio |
 | 04.12. | 2    | Ostoslistalta voi poistaa yhden tuotteen tai kaikki nappia painamalla |
-| yht | 21    | |
+| 11.12. | 3    | Käyttäjä voi kirjautua ulos ja käyttäjä voi kopioida leikepöydälleen ostoslistansa | 
+| yht | 24    | |
