@@ -73,6 +73,24 @@ class ShoppingView:
         )
         clear_button.grid(row=4, column=2, padx=(0, 5), pady=3)
 
+    def _initialize_action_buttons(self, frame):
+        """Initialize additional action buttons: copy and logout."""
+        copy_button = ttk.Button(
+            master=frame,
+            text="Copy to Clipboard",
+            command=self._copy_to_clipboard_handler,
+            width=16
+        )
+        copy_button.grid(row=7, column=0, padx=(0, 5), pady=(10, 3), sticky="w")
+
+        logout_button = ttk.Button(
+            master=frame,
+            text="Logout",
+            command=self._logout_handler,
+            width=12
+        )
+        logout_button.grid(row=7, column=2, padx=(0, 5), pady=(10, 3), sticky="e")
+
     def _initialize_message_label(self, frame):
         """Initialize message display label."""
         message_label = ttk.Label(
@@ -122,7 +140,8 @@ class ShoppingView:
         self._initialize_buttons(frame)
         self._initialize_message_label(frame)
         self._initialize_shopping_list(frame)
-        
+        self._initialize_action_buttons(frame)
+
         self._refresh_list()
 
     def _refresh_list(self):
@@ -188,5 +207,30 @@ class ShoppingView:
             self._service.clear_list(self._username)
             self._show_message("✓ All items cleared!")
             self._refresh_list()
+        except Exception as e:
+            self._show_message(f"⚠️ Error: {str(e)}", clear_after_ms=0)
+
+    def _copy_to_clipboard_handler(self):
+        """Format the shopping list and copy to system clipboard."""
+        try:
+            items = self._service.get_shopping_list(self._username)
+            if not items:
+                self._show_message("⚠️ List is empty", clear_after_ms=2000)
+                return
+
+            lines = ["Shopping List:"]
+            for it in items:
+                amt = it.amount
+                lines.append(f"- {amt} {it.name}")
+
+            text = "\n".join(lines)
+            try:
+                self._root.clipboard_clear()
+                self._root.clipboard_append(text)
+            except Exception:
+                self._show_message("⚠️ Could not access clipboard", clear_after_ms=0)
+                return
+
+            self._show_message("✓ Copied to clipboard!")
         except Exception as e:
             self._show_message(f"⚠️ Error: {str(e)}", clear_after_ms=0)

@@ -16,6 +16,13 @@ class ShoppingListService:
         """Add an item to the user's shopping list and return the created item."""
         if not username:
             raise ValueError("User must be provided")
+        if not item_name:
+            raise ValueError("Item name is required")
+        if not quantity:
+            quantity = "1"
+        if not quantity.isdigit() or int(quantity) <= 0:
+            raise ValueError("Quantity must be a positive integer")
+        quantity = int(quantity)
         return shopping_repository.add_item(item_name, quantity, username)
 
     def remove_item(self, username: str, item_id: int):
