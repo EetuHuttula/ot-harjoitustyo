@@ -1,5 +1,3 @@
-"""Concise tests for shopping list service wrapper functions."""
-
 import unittest
 from services import shopping_list_service
 
